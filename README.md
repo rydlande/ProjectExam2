@@ -1,17 +1,15 @@
 # Project Exam 2
 
 ### To-do
-- [] Setup routes
-- [] Design
-- [] Everything else
+- [ ] Setup routes
+- [ ] Design
+- [ ] Everything else
 
 # Table of contents
 
-- Requirements
-- Recommended modules
+- Description
+- Instructions
 - Installation
-- Configuration
-- Troubleshooting
 
 
 # Description
