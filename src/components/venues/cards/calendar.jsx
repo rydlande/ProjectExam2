@@ -17,6 +17,7 @@ export function BookingCalendar({ reserved, venueId }) {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
+          'X-Noroff-API-Key': localStorage.getItem('apiKey')
         },
         body: JSON.stringify({
             dateFrom: selectedDates[0].toISOString(),
