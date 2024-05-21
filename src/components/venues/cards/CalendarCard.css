@@ -1,0 +1,15 @@
+.disabled-date {
+  color: red !important;
+}
+
+.calendar__day--disabled {
+    @apply text-red-500;
+}
+
+.calendar__day--reserved {
+  background-color: red;
+  color: white;
+}
+.calendar-class {
+  background-color: green;
+}

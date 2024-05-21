@@ -1,3 +1,3 @@
-import { VenuesCard } from "./card";
+import { VenuesCard } from "./cards/all";
 
 export { VenuesCard };

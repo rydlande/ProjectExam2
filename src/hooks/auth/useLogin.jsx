@@ -22,6 +22,7 @@ export function useLogin() {
     
             const data = await res.json();
             localStorage.setItem('user', JSON.stringify(data));
+            localStorage.setItem('token', data.data.accessToken);
             setUser(data);
             setIsLoading(false);
             console.log('Login successful:', data);

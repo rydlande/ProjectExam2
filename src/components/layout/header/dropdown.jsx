@@ -8,9 +8,9 @@ export function DropdownMenu({ closeMenu }) {
         <div className="absolute mt-80 left-0 w-full py-1 bg-white z-10">
             {user ? (
                 <>
-                    <Link to="/venues" onClick={closeMenu} className="block px-4 py-2 text-sm hover:bg-light">New booking</Link>
+                    <Link to="/venues/all" onClick={closeMenu} className="block px-4 py-2 text-sm hover:bg-light">New booking</Link>
                     <hr className="border-b border-solid" />                    
-                    <Link to="/profile" onClick={closeMenu} className="block px-4 py-2 text-sm hover:bg-light">Profile</Link>
+                    <Link to="/profile/myProfile" onClick={closeMenu} className="block px-4 py-2 text-sm hover:bg-light">Profile</Link>
                     <Link to="/profile/bookings" onClick={closeMenu} className="block px-4 py-2 text-sm hover:bg-light">My bookings</Link>
                     <Link to="/profile/settings" onClick={closeMenu} className="block px-4 py-2 text-sm hover:bg-light">Settings</Link>
                     <div className="block px-4 py-2 text-sm hover:bg-light">
