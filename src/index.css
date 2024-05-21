@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.calendar__dayCell-footer {
+    @apply text-red-500;
+  }
+
+  .calendar__day--disabled {
+    @apply text-red-500;
+}
+
+.calendar__day--reserved {
+  background-color: red;
+  color: white;
+}

@@ -1,8 +1,8 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import * as React from 'react';
+import * as ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import App from './App.jsx';
+import './index.css';
 import {
   ForgottenPassword, 
   Login, 
@@ -31,18 +31,24 @@ const router = createBrowserRouter([
       },
       {
         path: 'venues',
-        element: <Venues />,
         children: [
+          {
+            path: 'all',
+            element: <Venues />,
+          },
           {
             path: ':id',
             element: <SpecificVenue />,
-          },
-        ],
+          }
+        ]
       },
       {
         path: 'profile',
-        element: <MyProfile />,
         children: [
+          {
+            path: 'myProfile',
+            element: <MyProfile />,
+          },
           {
             path: 'settings',
             element: <EditProfile />,
@@ -50,26 +56,22 @@ const router = createBrowserRouter([
           {
             path: 'bookings',
             element: <MyBookings />,
-            children: [
-              {
-                path: 'update',
-                element: <EditBooking />,
-              },
-            ],
+          },
+          {
+            path: 'bookings/update',
+            element: <EditBooking />,
           },
           {
             path: 'venues',
             element: <MyVenues />,
-            children: [
-              {
-                path: 'update',
-                element: <EditVenue />,
-              },
-              {
-                path: 'create',
-                element: <CreateVenue />,
-              }
-            ],
+          },
+          {
+            path: 'venues/update',
+            element: <EditVenue />,
+          },
+          {
+            path: 'venues/create',
+            element: <CreateVenue />,
           },
         ],
       },

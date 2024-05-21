@@ -28,4 +28,5 @@ _The installation section describes how to install the module._
 
 ````
 npm install
+npm i @demark-pro/react-booking-calendar
 ````
