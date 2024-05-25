@@ -40,7 +40,7 @@ export const useProfileStore = create((set) => ({
       const res = await fetch(`https://v2.api.noroff.dev/holidaze/profiles/${user.name}?_bookings=true&_venues=true`, {
         headers: {
           'Authorization': `Bearer ${accessToken}`,
-          'X-Noroff-API-Key': localStorage.getItem('apiKey')
+          'X-Noroff-API-Key': `${apiKey}`,
         }
       });
       if (!res.ok) {

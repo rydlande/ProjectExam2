@@ -10,8 +10,6 @@ export function MyBookings() {
     fetchProfile();
   }, [fetchProfile]);
 
-  console.log(profile);
-
   return (
     <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-3xl mx-auto">
       <div className="flex justify-between items-center mb-6">

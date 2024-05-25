@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { CancelBooking } from "./cancelBooking";
 
 export function MyBookingsCard({ booking }) {
-    console.log('test', booking);
+    const [showVenueMeta, setShowVenueMeta] = useState(false);
 
     const dateFrom = new Date(booking.dateFrom);
     const dateTo = new Date(booking.dateTo);
@@ -25,24 +27,53 @@ export function MyBookingsCard({ booking }) {
     const venue = booking.venue;
     const venueImage = booking.venue.media?.[0]?.url;
     const venueImageAlt = booking.venue.media?.[0]?.alt;
-    
+
+    const numberOfNights = Math.ceil((dateTo - dateFrom) / (1000 * 60 * 60 * 24));
+    const totalPrice = numberOfNights * venue.price;
+
     return (
         <>
-            <div className="bg-gray-100 p-4 rounded-lg shadow-md flex justify-between w-full">
-                <div className="flex">
-                    <div className="bg-blue-200 w-32 h-32 rounded-md mr-4">
-                        <img src={venueImage} alt={venueImageAlt} className="block m-auto object-cover rounded-sm w-32 h-32"/>
+            <div className="bg-gray-100 p-4 rounded-lg shadow-md w-full md:flex md:justify-between mb-6">
+                {/* booking info */}
+                <div className="flex flex-col md:flex-row md:items-center">
+                    <div className="w-32 h-32 rounded-md overflow-hidden mb-4 md:mb-0 md:mr-4">
+                        <Link to={`/venues/${venue.id}`}>
+                            <img src={venueImage} alt={venueImageAlt} className="object-cover w-full h-full"/>
+                        </Link>
                     </div>
-                        <div className="mr-4">
+                    <div className="md:text-left">
+                        <Link to={`/venues/${venue.id}`}>
                             <h3 className="text-lg font-semibold">{booking.venue.name}</h3>
-                            <p className="text-gray-600">{formattedDateFrom} - {formattedDateTo}</p>
-                            <p className="text-gray-600">{booking.guests} guests</p>
-                            <p className="text-gray-600">Booked: {formattedDateCreated}</p>
-                            <p className="text-gray-600">Price: {booking.venue.price} NOK</p>
-                        </div>
+                        </Link>
+                        <p className="text-gray-600">{formattedDateFrom} - {formattedDateTo}</p>
+                        <p className="text-gray-600">{booking.guests} guests</p>
+                        <p className="text-gray-600">Booked: {formattedDateCreated}</p>
+                        <p className="text-gray-600">Price: {totalPrice} NOK</p>
+                    </div>
                 </div>
 
-                        <div className="mr-4 text-sm text-gray-600">
+                {/* venue meta */}
+                <div className="hidden md:block text-sm text-gray-600 items-center">
+                    <p>Wifi: {venue.meta.wifi ? 'Yes' : 'No'}</p>
+                    <p>Parking: {venue.meta.parking ? 'Yes' : 'No'}</p>
+                    <p>Breakfast: {venue.meta.breakfast ? 'Yes' : 'No'}</p>
+                    <p>Pets: {venue.meta.pets ? 'Yes' : 'No'}</p>
+                    <p>Address: {venue.location.address || 'N/A'}</p>
+                    <p>City: {venue.location.city}</p>
+                    <p>Zip: {venue.location.zip}</p>
+                    <p>Country: {venue.location.country}</p>
+                </div>
+
+                {/* venue meta for mobile */}
+                <div className="block md:hidden mt-4">
+                    <button 
+                        className="text-blue-500 mb-2"
+                        onClick={() => setShowVenueMeta(!showVenueMeta)}
+                    >
+                        {showVenueMeta ? 'Hide Details' : 'Show Details'}
+                    </button>
+                    {showVenueMeta && (
+                        <div className="text-sm text-gray-600">
                             <p>Wifi: {venue.meta.wifi ? 'Yes' : 'No'}</p>
                             <p>Parking: {venue.meta.parking ? 'Yes' : 'No'}</p>
                             <p>Breakfast: {venue.meta.breakfast ? 'Yes' : 'No'}</p>
@@ -52,15 +83,17 @@ export function MyBookingsCard({ booking }) {
                             <p>Zip: {venue.location.zip}</p>
                             <p>Country: {venue.location.country}</p>
                         </div>
-                        <div className="flex flex-col items-end justify-between">
-                            <div className="flex flex-col items-end">
-                                <button className="text-blue-500 mb-2">Make changes</button>
-                                <button className="text-red-500 mb-2">Cancel trip</button>
-                                <button className="text-gray-500">View in map</button>
-                            </div>
-                            <Link to={`/venues/${venue.id}`} className="text-blue-500">View venue</Link>
-                        </div>
+                    )}
                 </div>
+                
+                {/* actions */}
+                <div className="flex flex-col items-end justify-between md:ml-4 md:items-end md:justify-end">
+                    <div className="flex flex-row justify-between w-full md:flex-col md:align-bottom">
+                        <button className="text-blue-500 mb-2">Make changes</button>
+                        <CancelBooking booking={booking} />
+                    </div>
+                </div>
+            </div>
         </>
     );
 }
