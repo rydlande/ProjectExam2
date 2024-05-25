@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export const useVenuesStore = create((set) => ({
+/* export const useVenuesStore = create((set) => ({
     venues: [],
     loading: false,
     setVenues: (venues) => set({ venues }),
@@ -19,7 +19,7 @@ export const useVenuesStore = create((set) => ({
             }
         }, 0);
     },
-}));
+})); */
 
 export const useProfileStore = create((set) => ({
   profile: null,
