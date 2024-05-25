@@ -1,24 +1,29 @@
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import { useProfileStore } from "../../hooks/profile/useProfile";
+
 
 export function EditProfileForm({ profile }) {
+    const { updateProfile, fetchProfile } = useProfileStore();
+
     const [avatar, setAvatar] = useState('');
-    const [avatarCaption, setAvatarCaption] = useState('');
+    const [avatarAlt, setAvatarAlt] = useState('');
     const [banner, setBanner] = useState('');
-    const [bannerCaption, setBannerCaption] = useState('');
+    const [bannerAlt, setBannerAlt] = useState('');
     const [bio, setBio] = useState('');
     const [venueManager, setVenueManager] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
     const [alertType, setAlertType] = useState('');
+    const [updateCount, setUpdateCount] = useState(0);
 
     useEffect(() => {
         setAvatar(profile.avatar?.url || '');
-        setAvatarCaption(profile.avatar?.caption || '');
+        setAvatarAlt(profile.avatar?.alt || '');
         setBanner(profile.banner?.url || '');
-        setBannerCaption(profile.banner?.caption || '');
+        setBannerAlt(profile.banner?.alt || '');
         setBio(profile.bio || '');
         setVenueManager(profile.venueManager || false);
-      }, [profile]);
+      }, [updateCount]);
 
       const isValidURL = (string) => {
         try {
@@ -41,7 +46,7 @@ export function EditProfileForm({ profile }) {
             setAlertType('error');
             return;
         }
-        if (avatarCaption && avatarCaption.length >= 120) {
+        if (avatarAlt && avatarAlt.length >= 120) {
             setAlertMessage('Avatar alt text must be less than 120 characters');
             setAlertType('error');
             return;
@@ -51,7 +56,7 @@ export function EditProfileForm({ profile }) {
             setAlertType('error');
             return;
         }
-        if (bannerCaption && bannerCaption.length >= 120) {
+        if (bannerAlt && bannerAlt.length >= 120) {
             setAlertMessage('Banner alt text must be less than 120 characters');
             setAlertType('error');
             return;
@@ -60,36 +65,22 @@ export function EditProfileForm({ profile }) {
         const updatedProfile = {
             avatar: {
                 url: avatar,
-                caption: avatarCaption,
+                alt: avatarAlt,
             },
             banner: {
                 url: banner,
-                caption: bannerCaption,
+                alt: bannerAlt,
             },
             bio: bio,
             venueManager: venueManager
         };
-        
-        const res = await fetch(`https://v2.api.noroff.dev/holidaze/profiles/${profile.name}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
-                "X-Noroff-API-Key": localStorage.getItem('apiKey')
-            },
-            body: JSON.stringify(updatedProfile)
-        });
-    
-        if (res.ok) {
-            setAlertMessage('Profile updated successfully');
-            setAlertType('success');
-        } else if (res.status === 400) {
-            setAlertMessage('Error: Avatar or Banner URL is not publicly accessible');
-            setAlertType('error');
-        } else {
-            setAlertMessage('Error updating profile');
-            setAlertType('error');
-        }
+
+        await updateProfile(updatedProfile);
+        await fetchProfile();
+        setUpdateCount(updateCount + 1);
+
+        setAlertMessage('Profile updated successfully');
+        setAlertType('success');
     };
     
     return (
@@ -97,10 +88,10 @@ export function EditProfileForm({ profile }) {
             <div className="mb-4 flex flex-col">
                 <div className='flex flex-col-reverse items-center justify-evenly md:flex-row'>
                     <div className="w-32 h-32 rounded-lg overflow-hidden mb-4">
-                        <img src={avatar} alt={avatarCaption} className="object-cover w-full h-full"/>
+                        <img src={avatar} alt={avatarAlt} className="object-cover w-full h-full"/>
                     </div>
                     <div className=" w-56 h-32 rounded-lg overflow-hidden mb-4">
-                        <img src={banner} alt={bannerCaption} className="object-cover w-full h-full"/>
+                        <img src={banner} alt={bannerAlt} className="object-cover w-full h-full"/>
                     </div>
                 </div>
                 <div className="flex flex-col mb-2">
@@ -114,12 +105,12 @@ export function EditProfileForm({ profile }) {
                     />
                 </div>
                 <div className="flex flex-col mb-2">
-                    <label>Avatar Caption:</label>
+                    <label>Avatar caption:</label>
                     <input
                         type="text"
-                        value={avatarCaption}
-                        onChange={(e) => setAvatarCaption(e.target.value)}
-                        placeholder="Change caption"
+                        value={avatarAlt}
+                        onChange={(e) => setAvatarAlt(e.target.value)}
+                        placeholder="Change Alt"
                         className="mb-4 p-2 border border-gray-300 rounded"
                     />
                 </div>
@@ -136,12 +127,12 @@ export function EditProfileForm({ profile }) {
                     />
                 </label>
                 <label>
-                    Banner Caption:
+                    Banner caption:
                     <input
                         type="text"
-                        value={bannerCaption}
-                        onChange={(e) => setBannerCaption(e.target.value)}
-                        placeholder="Change caption"
+                        value={bannerAlt}
+                        onChange={(e) => setBannerAlt(e.target.value)}
+                        placeholder="Change Alt"
                         className="mb-2 p-2 border border-gray-300 rounded w-full"
                     />
                 </label>

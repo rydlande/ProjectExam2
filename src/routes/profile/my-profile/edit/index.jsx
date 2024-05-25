@@ -1,13 +1,16 @@
 import { useEffect } from 'react';
-import { useProfileStore } from "../../../../hooks/stores";
+import { useProfileStore } from "../../../../hooks/profile/useProfile";
 import { EditProfileForm } from '../../../../components/profile/editProfileForm';
 
 export function EditProfile() {
-  const { profile, fetchProfile } = useProfileStore();
+  const { profile, loading, fetchProfile } = useProfileStore();
 
   useEffect(() => {
     fetchProfile();
-  }, [fetchProfile]);
+  }, []);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="min-h-screen bg-blue-100 flex flex-col items-center justify-center">
