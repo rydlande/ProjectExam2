@@ -13,7 +13,7 @@ export function MyProfile() {
     <div>
       {profile && (
           <div className="min-h-screen bg-blue-100 flex flex-col items-center justify-center">
-            <div className="bg-white p-8 rounded-lg shadow-lg w-3/4">
+            <div className="bg-white p-8 rounded-lg shadow-lg w-3/4 max-w-4xl mt-6 max-h-[1100px] md:max-h-[800px]">
 
               {/* Profile information */}
               <div className="relative w-full h-48 mb-8 rounded-lg overflow-hidden">
@@ -21,18 +21,18 @@ export function MyProfile() {
                 <div className="absolute inset-0 bg-black bg-opacity-30"></div>
               </div>
               <div className="relative flex flex-col items-center">
-                <div className="absolute -top-16 bg-blue-200 w-32 h-32 rounded-lg overflow-hidden z-10">
+                <div className="absolute -top-16 w-32 h-32 rounded-lg overflow-hidden z-10">
                   <img src={profile.avatar.url} alt={profile.avatar.alt} className="object-cover w-full h-full"/>
                 </div>
-                <div className="pt-24 text-center">
+                <div className="pt-20 text-center">
                   <h2 className="text-2xl font-semibold mb-0.5">{profile.name}</h2>
-                  <p className="text-gray-600 mb-2 text-xs">{profile.email}</p>
-                  <p className="text-gray-600 mb-8">{profile.bio}</p>
+                  <p className="text-gray-600 mb-6 text-xs">{profile.email}</p>
+                  <p className="text-gray-600">{profile.bio}</p>
                 </div>
               </div>
 
               {/* Profile actions */}
-              <div className="grid-rows-3 md:grid md:grid-cols-3 gap-4 text-center">
+              <div className="grid-rows-3 md:grid md:grid-cols-3 gap-4 text-center md:mt-10">
 
                 {/* Bookings */}
                 <Link to="/profile/bookings" className="bg-gray-100 p-4 rounded-lg shadow-md flex flex-col items-center my-3 md:my-0">
