@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import { CSSTransition } from "react-transition-group";
+import { useSpring, animated } from '@react-spring/web';
 import { DropdownMenu } from './dropdown';
-import './Header.css'; 
 
 export function Header() {
     const [navOpen, setNavOpen] = useState(false);
@@ -19,6 +18,11 @@ export function Header() {
             document.removeEventListener("mousedown", handleNavClose);
         };
     }, []);
+
+    const animation = useSpring({
+        transform: navOpen ? 'translateX(0%)' : 'translateX(100%)',
+        config: { tension: 220, friction: 20 },
+    });
 
     return (
         <header ref={navClose} className="bg-white shadow-md fixed w-full max-w-md md:max-w-full z-20 top-0 h-14">
@@ -60,21 +64,15 @@ export function Header() {
                     onClick={() => setNavOpen(!navOpen)}
                     className="hidden md:block mr-5"
                     aria-label="Toggle profile-navigation menu"
-                    >
+                >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                     </svg>
                 </button>
-
-                <CSSTransition
-                    in={navOpen}
-                    timeout={300}
-                    classNames="nav-menu"
-                    unmountOnExit
-                >
-                    <DropdownMenu closeMenu={() => setNavOpen(false)} />
-                </CSSTransition>
             </nav>
+            <animated.div style={animation} className="fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-30">
+                <DropdownMenu closeMenu={() => setNavOpen(false)} />
+            </animated.div>
         </header>
     )
 }

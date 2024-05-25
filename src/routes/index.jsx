@@ -15,6 +15,7 @@ import {
 import { HelpCenter } from "./help-center";
 import { User } from "./users";
 import { SpecificVenue, Venues } from "./venues";
+import { Error } from "./error";
 
 export { 
     ForgottenPassword, 
@@ -30,5 +31,6 @@ export {
     MyVenues, 
     User, 
     SpecificVenue, 
-    Venues 
+    Venues,
+    Error
 };

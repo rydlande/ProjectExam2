@@ -17,13 +17,15 @@ import {
   MyVenues, 
   User, 
   SpecificVenue, 
-  Venues 
+  Venues,
+  Error
 } from './routes'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <Error />,
     children: [
       {
         index: true,
