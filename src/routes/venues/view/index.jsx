@@ -13,11 +13,11 @@ export function Venues() {
     <div className="min-h-screen bg-gray-100 p-8">
       <SearchBar venues={venues}/>
       <h2 className="text-xl font-semibold mb-4">All venues</h2>
-      <div>
+      {/* <div>
         {venues.map((venue, index) => (
           <VenuesCard key={index} venue={venue} />
         ))}
-      </div>
+      </div> */}
     </div>
   )
 }
