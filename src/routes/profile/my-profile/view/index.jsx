@@ -21,7 +21,7 @@ export function MyProfile() {
                 <div className="absolute inset-0 bg-black bg-opacity-30"></div>
               </div>
               <div className="relative flex flex-col items-center">
-                <div className="absolute -top-16 w-32 h-32 rounded-lg overflow-hidden z-10">
+                <div className="absolute -top-16 w-32 h-32 rounded-lg overflow-hidden z-1">
                   <img src={profile.avatar.url} alt={profile.avatar.alt} className="object-cover w-full h-full"/>
                 </div>
                 <div className="pt-20 text-center">

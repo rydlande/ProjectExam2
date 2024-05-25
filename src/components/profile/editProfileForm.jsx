@@ -96,10 +96,10 @@ export function EditProfileForm({ profile }) {
         <form onSubmit={handleSubmit} className='text-sm'>
             <div className="mb-4 flex flex-col">
                 <div className='flex flex-col-reverse items-center justify-evenly md:flex-row'>
-                    <div className="w-32 h-32 rounded-lg overflow-hidden z-10 mb-4">
+                    <div className="w-32 h-32 rounded-lg overflow-hidden mb-4">
                         <img src={avatar} alt={avatarCaption} className="object-cover w-full h-full"/>
                     </div>
-                    <div className=" w-56 h-32 rounded-lg overflow-hidden z-10 mb-4">
+                    <div className=" w-56 h-32 rounded-lg overflow-hidden mb-4">
                         <img src={banner} alt={bannerCaption} className="object-cover w-full h-full"/>
                     </div>
                 </div>
