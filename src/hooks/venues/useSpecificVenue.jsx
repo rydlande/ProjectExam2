@@ -4,11 +4,12 @@ export const useSpecificVenueStore = create((set) => ({
     venue: {},
     loading: true,
     error: null,
+    currentImageIndex: 0,
     fetchVenue: async (id) => {
         try {
             const res = await fetch('https://v2.api.noroff.dev/holidaze/venues/' + id + '?_bookings=true&_owner=true');
             const data = await res.json();
-            set({ venue: data.data, loading: false });
+            set({ venue: data.data, loading: false, currentImageIndex: 0 });
         } catch (error) {
             console.error('Failed to fetch venue', error);
             set({ error: error.message, loading: false });
@@ -70,5 +71,11 @@ export const useSpecificVenueStore = create((set) => ({
             console.error('Failed to delete venue', error);
             set({ error: error.message, loading: false });
         }
-    }
+    },
+    nextImage: () => set((state) => ({
+        currentImageIndex: (state.currentImageIndex + 1) % (state.venue.media?.length || 1)
+    })),
+    prevImage: () => set((state) => ({
+        currentImageIndex: (state.currentImageIndex - 1 + (state.venue.media?.length || 1)) % (state.venue.media?.length || 1)
+    })),
 }));
