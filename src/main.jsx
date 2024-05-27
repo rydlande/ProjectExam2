@@ -15,6 +15,7 @@ import {
   CreateVenue, 
   EditVenue, 
   MyVenues, 
+  MySpecificVenue,
   User, 
   SpecificVenue, 
   Venues,
@@ -68,7 +69,11 @@ const router = createBrowserRouter([
             element: <MyVenues />,
           },
           {
-            path: 'venues/update',
+            path: 'venues/:id',
+            element: <MySpecificVenue />,
+          },
+          {
+            path: 'venues/update/:id',
             element: <EditVenue />,
           },
           {

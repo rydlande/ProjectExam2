@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { useProfileStore } from "../../hooks/profile/useProfile";
+import { useProfileStore } from "../../../hooks/profile/useProfile";
 
 
-export function EditProfileForm({ profile }) {
-    const { updateProfile, fetchProfile } = useProfileStore();
+export function EditProfileForm() {
+    const { profile, loading, updateProfile, fetchProfile } = useProfileStore();
 
     const [avatar, setAvatar] = useState('');
     const [avatarAlt, setAvatarAlt] = useState('');
@@ -25,7 +25,7 @@ export function EditProfileForm({ profile }) {
         setVenueManager(profile.venueManager || false);
       }, [updateCount]);
 
-      const isValidURL = (string) => {
+    const isValidURL = (string) => {
         try {
             new URL(string);
             return true;
@@ -82,6 +82,10 @@ export function EditProfileForm({ profile }) {
         setAlertMessage('Profile updated successfully');
         setAlertType('success');
     };
+
+    if (loading) {
+        return <div>Loading...</div>;
+      }
     
     return (
         <form onSubmit={handleSubmit} className='text-sm'>

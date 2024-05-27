@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRegister } from '../../../hooks/auth/useRegister.jsx';
 
-export const RegistrationForm = () => {
+export function RegistrationForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -22,7 +22,8 @@ export const RegistrationForm = () => {
         alt: avatarAlt
       }
     };
-    await register(userData, () => navigate('/profile'));  };
+    await register(userData, () => navigate('/profile'));  
+  };
 
   return (
     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">

@@ -27,7 +27,7 @@ export function CalendarCard() {
         guests: 1,
       };
       try {
-        const ress = await createBooking(newBooking);
+        const res = await createBooking(newBooking);
         setAlertMessage("Your new booking was made! You can find all your bookings under 'My bookings' on your profile page.");
         fetchVenue(id);
         setSelectedDates([null, null]);

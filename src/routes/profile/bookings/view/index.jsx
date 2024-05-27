@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useProfileStore } from "../../../../hooks/stores";
 import { Link } from "react-router-dom";
-import { MyBookingsCard } from "../../../../components/profile/myBookingsCard";
+import { MyBookingsCard } from "../../../../components/profile/bookings/myBookingsCard";
 
 export function MyBookings() {
   const { profile, fetchProfile } = useProfileStore();

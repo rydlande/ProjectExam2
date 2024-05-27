@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useVenuesStore } from "../../../hooks/venues/useVenues";
-import { VenuesCard } from "../../../components/venues/cards/all";
+import { VenuesCard } from "../../../components/cards/venueCard";
 import { SearchBar } from "../../../components/venues/search";
 
 export function Venues() {
@@ -9,6 +9,7 @@ export function Venues() {
   useEffect(() => {
     fetchVenues();
   }, []);
+
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">

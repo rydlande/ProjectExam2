@@ -15,40 +15,28 @@ export const useSpecificVenueStore = create((set) => ({
             set({ error: error.message, loading: false });
         }
     },
-    createVenue: async (venue) => {
-        const accessToken = localStorage.getItem('accessToken');
-        const apiKey = localStorage.getItem('apiKey');
-        try {
-            const res = await fetch('https://v2.api.noroff.dev/holidaze/venues', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${accessToken}`,
-                    'X-Noroff-API-Key': `${apiKey}`,
-                },
-                body: JSON.stringify(venue)
-            });
-            const data = await res.json();
-            set({ venue: data.data, loading: false });
-        } catch (error) {
-            console.error('Failed to create venue', error);
-            set({ error: error.message, loading: false });
-        }
-    },
     updateVenue: async (id, updatedVenue) => {
         const accessToken = localStorage.getItem('accessToken');
         const apiKey = localStorage.getItem('apiKey');
+        const options = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+                'X-Noroff-API-Key': apiKey
+            },
+            body: JSON.stringify(updatedVenue)
+        }
         try {
-            const res = await fetch('https://v2.api.noroff.dev/holidaze/venues/' + id, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${accessToken}`,
-                    'X-Noroff-API-Key': `${apiKey}`,
-                },
-                body: JSON.stringify(updatedVenue)
-            });
+            const res = await fetch('https://v2.api.noroff.dev/holidaze/venues/' + id, options);
             const data = await res.json();
+
+            if (!res.ok) {
+                console.error('Failed to update venue', data);
+                throw new Error(data.errors.map(error => error.message).join(', '));
+            }
+
+            console.log('Successfully updated venue:', data.data);
             set({ venue: data.data, loading: false });
         } catch (error) {
             console.error('Failed to update venue', error);
@@ -58,18 +46,26 @@ export const useSpecificVenueStore = create((set) => ({
     deleteVenue: async (id) => {
         const accessToken = localStorage.getItem('accessToken');
         const apiKey = localStorage.getItem('apiKey');
+        const options = {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+                'X-Noroff-API-Key': apiKey
+            }
+        }
         try {
-            await fetch('https://v2.api.noroff.dev/holidaze/venues/' + id, {
-                method: 'DELETE',
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`,
-                    'X-Noroff-API-Key': `${apiKey}`,
-                },
-            });
+            const res = await fetch('https://v2.api.noroff.dev/holidaze/venues/' + id, options); 
+
+            if (!res.ok) {
+                throw new Error('Failed to delete venue');
+            }
+
             set({ venue: {}, loading: false });
+            return res.status;
         } catch (error) {
             console.error('Failed to delete venue', error);
             set({ error: error.message, loading: false });
+            throw error;
         }
     },
     nextImage: () => set((state) => ({
