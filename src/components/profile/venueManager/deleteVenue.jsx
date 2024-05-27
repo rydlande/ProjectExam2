@@ -22,7 +22,7 @@ export function DeleteVenue() {
   return (
     <>
     <div>
-      <button onClick={() => setShowModal(true)} className='text-red-600 mb-2'>
+      <button onClick={() => setShowModal(true)} className='bg-teal text-white hover:bg-teal-dark font-semibold py-2 px-4 rounded'>
         Delete Venue
       </button>
       {showModal && (
@@ -32,14 +32,13 @@ export function DeleteVenue() {
             <div className="flex justify-end space-x-4">
               <button
                 onClick={() => setShowModal(false)}
-                className="bg-gray-300 text-gray-700 py-2 px-4 rounded"
-              >
+                className='bg-yellow-light text-teal-dark hover:bg-yellow font-bold py-2 px-4 rounded'
+                >
                 Go back
               </button>
               <button
                 onClick={handleDelete}
-                className="bg-red-500 text-white py-2 px-4 rounded"
-              >
+                className='bg-teal text-white hover:bg-teal-dark font-semibold py-2 px-4 rounded'                >
                 Yes
               </button>
             </div>

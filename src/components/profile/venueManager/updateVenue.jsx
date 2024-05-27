@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from "react-router-dom";
 import { useSpecificVenueStore } from "../../../hooks/venues/useSpecificVenue";
+import { Loader } from '../../loader'
 
 export function EditVenueForm() {
     const { id } = useParams();
@@ -97,7 +98,7 @@ export function EditVenueForm() {
     };
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <Loader />;
     }
 
     return (
@@ -110,7 +111,7 @@ export function EditVenueForm() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="Change name"
-                        className="mb-2 p-2 border border-gray-300 rounded"
+                        className="mb-2 p-2 border border-grey-300 rounded"
                     />
                 </div>
                 <div className="flex flex-col mb-2">
@@ -119,7 +120,7 @@ export function EditVenueForm() {
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder="Change description"
-                        className="mb-4 p-2 border border-gray-300 rounded"
+                        className="mb-4 p-2 border border-grey-300 rounded"
                     />
                 </div>
                 <div className="flex flex-col mb-2">
@@ -129,7 +130,7 @@ export function EditVenueForm() {
                         value={mediaUrl}
                         onChange={(e) => setMediaUrl(e.target.value)}
                         placeholder="Change media URL"
-                        className="mb-2 p-2 border border-gray-300 rounded"
+                        className="mb-2 p-2 border border-grey-300 rounded"
                     />
                 </div>
                 <div className="flex flex-col mb-2">
@@ -139,7 +140,7 @@ export function EditVenueForm() {
                         value={mediaAlt}
                         onChange={(e) => setMediaAlt(e.target.value)}
                         placeholder="Change media alt text"
-                        className="mb-4 p-2 border border-gray-300 rounded"
+                        className="mb-4 p-2 border border-grey-300 rounded"
                     />
                 </div>
                 <div className="flex flex-col mb-2">
@@ -149,7 +150,7 @@ export function EditVenueForm() {
                         value={price}
                         onChange={(e) => setPrice(parseFloat(e.target.value))}
                         placeholder="Change price"
-                        className="mb-2 p-2 border border-gray-300 rounded"
+                        className="mb-2 p-2 border border-grey-300 rounded"
                     />
                 </div>
                 <div className="flex flex-col mb-2">
@@ -159,7 +160,7 @@ export function EditVenueForm() {
                         value={maxGuests}
                         onChange={(e) => setMaxGuests(parseFloat(e.target.value))}
                         placeholder="Change max guests"
-                        className="mb-2 p-2 border border-gray-300 rounded"
+                        className="mb-2 p-2 border border-grey-300 rounded"
                     />
                 </div>
                 <div className="flex flex-col mb-2">
@@ -169,11 +170,11 @@ export function EditVenueForm() {
                         value={rating}
                         onChange={(e) => setRating(parseFloat(e.target.value))}
                         placeholder="Change rating"
-                        className="mb-2 p-2 border border-gray-300 rounded"
+                        className="mb-2 p-2 border border-grey-300 rounded"
                     />
                 </div>
                 <div className="mb-4 flex items-center">
-                    <label className="block text-gray-700 mr-2">WiFi:</label>
+                    <label className="block text-grey-700 mr-2">WiFi:</label>
                     <input
                         type="checkbox"
                         checked={wifi}
@@ -181,7 +182,7 @@ export function EditVenueForm() {
                     />
                 </div>
                 <div className="mb-4 flex items-center">
-                    <label className="block text-gray-700 mr-2">Parking:</label>
+                    <label className="block text-grey-700 mr-2">Parking:</label>
                     <input
                         type="checkbox"
                         checked={parking}
@@ -189,7 +190,7 @@ export function EditVenueForm() {
                     />
                 </div>
                 <div className="mb-4 flex items-center">
-                    <label className="block text-gray-700 mr-2">Breakfast:</label>
+                    <label className="block text-grey-700 mr-2">Breakfast:</label>
                     <input
                         type="checkbox"
                         checked={breakfast}
@@ -197,7 +198,7 @@ export function EditVenueForm() {
                     />
                 </div>
                 <div className="mb-4 flex items-center">
-                    <label className="block text-gray-700 mr-2">Pets:</label>
+                    <label className="block text-grey-700 mr-2">Pets:</label>
                     <input
                         type="checkbox"
                         checked={pets}
@@ -211,7 +212,7 @@ export function EditVenueForm() {
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
                         placeholder="Change address"
-                        className="mb-2 p-2 border border-gray-300 rounded"
+                        className="mb-2 p-2 border border-grey-300 rounded"
                     />
                 </div>
                 <div className="flex flex-col mb-2">
@@ -221,7 +222,7 @@ export function EditVenueForm() {
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
                         placeholder="Change city"
-                        className="mb-2 p-2 border border-gray-300 rounded"
+                        className="mb-2 p-2 border border-grey-300 rounded"
                     />
                 </div>
                 <div className="flex flex-col mb-2">
@@ -231,7 +232,7 @@ export function EditVenueForm() {
                         value={zip}
                         onChange={(e) => setZip(e.target.value)}
                         placeholder="Change zip"
-                        className="mb-2 p-2 border border-gray-300 rounded"
+                        className="mb-2 p-2 border border-grey-300 rounded"
                     />
                 </div>
                 <div className="flex flex-col mb-2">
@@ -241,7 +242,7 @@ export function EditVenueForm() {
                         value={country}
                         onChange={(e) => setCountry(e.target.value)}
                         placeholder="Change country"
-                        className="mb-2 p-2 border border-gray-300 rounded"
+                        className="mb-2 p-2 border border-grey-300 rounded"
                     />
                 </div>
                 <div className="flex flex-col mb-2">
@@ -251,7 +252,7 @@ export function EditVenueForm() {
                         value={continent}
                         onChange={(e) => setContinent(e.target.value)}
                         placeholder="Change continent"
-                        className="mb-2 p-2 border border-gray-300 rounded"
+                        className="mb-2 p-2 border border-grey-300 rounded"
                     />
                 </div>
                 <div className="flex flex-col mb-2">
@@ -261,7 +262,7 @@ export function EditVenueForm() {
                         value={lat}
                         onChange={(e) => setLat(parseFloat(e.target.value))}
                         placeholder="Change latitude"
-                        className="mb-2 p-2 border border-gray-300 rounded"
+                        className="mb-2 p-2 border border-grey-300 rounded"
                     />
                 </div>
                 <div className="flex flex-col mb-2">
@@ -271,13 +272,13 @@ export function EditVenueForm() {
                         value={lng}
                         onChange={(e) => setLng(parseFloat(e.target.value))}
                         placeholder="Change longitude"
-                        className="mb-2 p-2 border border-gray-300 rounded"
+                        className="mb-2 p-2 border border-grey-300 rounded"
                     />
                 </div>
             </div>
             <div className="flex justify-between">
                 <Link to="/profile/venues">
-                    <button className="bg-gray-300 text-gray-700 py-2 px-4 rounded">
+                    <button className="bg-grey-300 text-grey-700 py-2 px-4 rounded">
                         Back
                     </button>
                 </Link>

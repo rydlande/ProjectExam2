@@ -1,32 +1,58 @@
-# Project Exam 2
+# Exam 2 - Holidaze Accommodation Booking Site
 
-### To-do
-- [ ] Setup routes
-- [ ] Design
-- [ ] Everything else
+## Project Overview
 
-# Table of contents
+This project, "Exam 2," is developed as part of an extensive front-end development assignment. The goal is to create a modern front-end application for an accommodation booking site called Holidaze. The site features a customer-facing side for booking holidays and an admin-facing side for managing venues and bookings.
 
-- Description
-- Instructions
-- Installation
+### Key Features:
 
+- **View a list of venues**
+- **Search for specific venues**
+- **View details of a specific venue**
+- **Check available dates and book venues**
+- **User authentication for customers and venue managers**
+- **Venue management by registered venue managers**
 
-# Description
-_Add description_
+## Technical Stack
 
+- **Frontend Framework:** React.js
+- **CSS Framework:** Tailwind CSS
+- **State Management:** Zustand
+- **Routing:** React Router
+- **Form Handling:** React Hook Form
+- **Validation:** Yup
+- **Animations:** React Spring
 
-# Instructions
-- Clone this repository
-- Run `npm install` in your bash/command line
-- Run `npm run dev` in your bash/command line
-- Add your scripts
+## Installation and Setup
 
+```bash
+# Clone the repository
+git clone https://your-repository-link-here.git
 
-# Installation
-_The installation section describes how to install the module._
+# Navigate to the project directory
+cd exam-2
 
-````
+# Install dependencies
 npm install
-npm i @demark-pro/react-booking-calendar
-````
+
+# Run the development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview the production build
+npm run preview
+```
+
+
+
+## API Reference
+This project uses the Holidaze API provided by Noroff API services. The full API documentation can be accessed here.
+
+## Additional Resources
+Live Demo: 
+Deployment: Hosted on Netlify
+
+## Contact
+For more information on this project, please reach out to the developer eirryd24360@stud.noroff.no.

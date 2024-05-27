@@ -12,7 +12,7 @@ export default {
       'black': '#000000',
       'white': '#FAFAFA',
       yellow: {
-        light: '#FAF6E7',
+        light: '#FFEFAC',
         DEFAULT: '#FFD93D',
       },
       teal: {
@@ -36,9 +36,3 @@ export default {
     require('@tailwindcss/forms'),
   ],
 }
-
-// button main: 
-// className='bg-teal text-white hover:bg-teal-dark font-semibold py-2 px-4 rounded'
-
-// button secondary:
-// className='bg-yellow-light text-teal-dark hover:bg-yellow font-bold py-2 px-4 rounded'

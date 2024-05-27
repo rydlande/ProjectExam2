@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useProfileStore } from "../../../../hooks/profile/useProfile";
+import { Loader } from '../loader'
 
 
 export function MyVenues() {
@@ -10,10 +11,8 @@ export function MyVenues() {
   }, []);
   
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
-  console.log(profile);
-
 
     return (
       <div>

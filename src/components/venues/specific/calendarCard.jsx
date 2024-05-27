@@ -4,7 +4,8 @@ import Calendar from 'react-calendar';
 import { useSpecificVenueStore } from '../../../hooks/venues/useSpecificVenue';
 import { useBookingStore } from '../../../hooks/bookings/useBookings';
 import 'react-calendar/dist/Calendar.css';
-import './CalendarCard.css';
+import './calendarCard.css';
+import { Loader } from '../../loader'
 
 export function CalendarCard() {
   const { id } = useParams();
@@ -69,7 +70,7 @@ export function CalendarCard() {
   const calculateTotalNights = (dateFrom, dateTo) => {
     if (!dateFrom || !dateTo) return 0;
     const diffTime = Math.abs(dateTo - dateFrom);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
     return diffDays;
   };
 
@@ -77,12 +78,12 @@ export function CalendarCard() {
   const totalPrice = totalNights * venue.price;
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (
-    <div className="border p-4 rounded-lg bg-white max-w-sm mx-auto text-center">
-      <h2 className="text-xl mb-4">Booking details</h2>
+    <div className=" p-4 rounded-lg max-w-sm mx-auto text-center">
+      <h2 className="text-xl mb-4">Booking</h2>
       <div className="mb-4">
         <Calendar
           onChange={handleChange}
@@ -96,20 +97,20 @@ export function CalendarCard() {
       <button
         onClick={handleBooking}
         disabled={!selectedDates[0] || !selectedDates[1]}
-        className="bg-blue-500 text-white py-2 px-4 rounded disabled:opacity-50"
+        className='bg-teal text-white hover:bg-teal-dark font-semibold py-2 px-4 rounded disabled:bg-grey-300'
       >
         Book now
       </button>
       {alertMessage && (
-        <div className="alert mt-4 p-2 bg-green-100 text-green-700 rounded">
+        <div className="alert mt-4 p-2 bg-teal-light text-teal-dark rounded">
           {alertMessage}
         </div>
       )}
       <div className="mt-4">
         <div className="text-lg">{venue.price} NOK / night</div>
-        <div className="text-sm text-gray-500">x{totalNights} nights</div>
+        <div className="text-sm text-grey-500">x{totalNights} nights</div>
       </div>
-      <hr className="my-4" />
+      <hr className="w-full my-4 border-2 border-teal-light" />
       <div className="text-xl font-bold">Total {totalPrice} NOK</div>
     </div>
   );

@@ -48,34 +48,6 @@ export const useBookingStore = create((set) => ({
       set({ error: error.message, loading: false });
     }
   },
-  updateBooking: async (id, updatedBooking) => {
-    const accessToken = localStorage.getItem('accessToken');
-    const apiKey = localStorage.getItem('apiKey');
-    try {
-      const res = await fetch(`https://v2.api.noroff.dev/holidaze/bookings/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`,
-          'X-Noroff-API-Key': `${apiKey}`,
-        },
-        body: JSON.stringify(updatedBooking)
-      });
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || 'Failed to update booking');
-      }
-      const data = await res.json();
-      set((state) => ({
-        bookings: state.bookings.map((booking) => 
-          booking.id === id ? data.data : booking),
-        loading: false
-      }));
-    } catch (error) {
-      console.error('Failed to update booking', error);
-      set({ error: error.message, loading: false });
-    }
-  },
   deleteBooking: async (id) => {
     const accessToken = localStorage.getItem('accessToken');
     const apiKey = localStorage.getItem('apiKey');

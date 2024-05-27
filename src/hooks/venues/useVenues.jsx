@@ -10,7 +10,6 @@ export const useVenuesStore = create((set, get) => ({
     setVenues: (venues) => set({ venues }),
     setLoading: (loading) => set({ loading }),
     setPage: (page) => set({ page }),
-    
     fetchVenues: async () => {
         set({ loading: true });
         const { page } = get();

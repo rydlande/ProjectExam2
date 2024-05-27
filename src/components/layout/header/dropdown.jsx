@@ -15,7 +15,7 @@ export function DropdownMenu({ closeMenu }) {
                     <Link to="/profile/bookings" onClick={closeMenu} className="block px-4 py-2 text-sm hover:bg-light">My bookings</Link>
                     <Link to="/profile/venues" onClick={closeMenu} className="block px-4 py-2 text-sm hover:bg-light">My venues</Link>
                     <Link to="/profile/venues/create" onClick={closeMenu} className="block px-4 py-2 text-sm hover:bg-light">Register venue</Link>
-                    <hr className="border-b border-solid" />
+                    <hr className="w-4/5 my-8 border-2 border-teal-light" />
                     <Link to="/profile/settings" onClick={closeMenu} className="block px-4 py-2 text-sm hover:bg-light">Settings</Link>
                     <div className="block px-4 py-2 text-sm hover:bg-light">
                         <LogoutButton />
@@ -35,13 +35,13 @@ export function DropdownMenu({ closeMenu }) {
             {user ? (
                 <>
                     <Link to="/venues/all" onClick={closeMenu} className="block px-4 py-2 text-sm hover:bg-light">New booking</Link>
-                    <hr className="border-b border-solid" />
+                    <hr className="w-4/5 my-8 border-2 border-teal-light" />
                     <Link to="/profile/myProfile" onClick={closeMenu} className="block px-4 py-2 text-sm hover:bg-light">Profile</Link>
                     <Link to="/profile/bookings" onClick={closeMenu} className="block px-4 py-2 text-sm hover:bg-light">My bookings</Link>
                     <Link to="/profile/venues" onClick={closeMenu} className="block px-4 py-2 text-sm hover:bg-light">My venues</Link>
                     <Link to="/profile/venues/create" onClick={closeMenu} className="block px-4 py-2 text-sm hover:bg-light">Register venue</Link>
                     <Link to="/profile/settings" onClick={closeMenu} className="block px-4 py-2 text-sm hover:bg-light">Settings</Link>
-                    <hr className="border-b border-solid" />
+                    <hr className="w-4/5 my-8 border-2 border-teal-light" />
                     <Link to="/help-center" onClick={closeMenu} className="block px-4 py-2 text-sm hover:bg-light">Help Center</Link>
                     <div className="block px-4 py-2 text-sm hover:bg-light">
                         <LogoutButton />

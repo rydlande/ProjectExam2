@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export function VenuesCard({ venues}) {
+export function VenuesCard({ venues }) {
 
     if (!venues) {
         return <div>No venues found.</div>;
@@ -29,6 +29,16 @@ export function VenuesCard({ venues}) {
                                 <span className="text-grey-600 truncate">no ratings</span>
                             )}
                         </div>
+                        {!venue.owner && (
+                            <div className="mt-2 flex flex-col space-y-2">
+                                <Link to={`/profile/venues/${venue.id}`}>
+                                    <button className="bg-teal-light text-white px-3 py-1 rounded hover:bg-teal">View Details</button>
+                                </Link>
+                                <Link to={`/profile/venues/update/${venue.id}`}>
+                                    <button className="bg-yellow-light text-teal-dark hover:bg-yellow font-bold py-2 px-4 rounded">Edit Venue</button>
+                                </Link>
+                            </div>
+                    )}
                     </div>
                 ))}
             </div>

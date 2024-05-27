@@ -1,14 +1,26 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useVenuesStore } from "../../../hooks/venues/useVenues";
 import { VenuesCard } from "../../../components/cards/venueCard";
 import { SearchBar } from "../../../components/venues/search";
+import { Loader } from "../../../components/loader/index";
 
 export function Venues() {
   const { venues, loading, fetchVenues, nextPage } = useVenuesStore();
+  const [initialLoading, setInitialLoading] = useState(true);
 
   useEffect(() => {
-    fetchVenues();
-  }, []);
+    if (venues.length === 0) {
+      fetchVenues().then(() => {
+        console.log("Venues fetched, setting loading to false.");
+        setInitialLoading(false);
+      });
+    }
+  }, [fetchVenues, venues.length]);
+  
+
+  if (initialLoading) {
+    return <Loader />;
+  }
 
   return (
     <>

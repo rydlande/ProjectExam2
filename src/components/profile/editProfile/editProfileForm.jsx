@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useProfileStore } from "../../../hooks/profile/useProfile";
+import { Loader } from '../../loader'
 
 
 export function EditProfileForm() {
-    const { profile, loading, updateProfile, fetchProfile } = useProfileStore();
+    const { profile, updateProfile, fetchProfile } = useProfileStore();
 
     const [avatar, setAvatar] = useState('');
     const [avatarAlt, setAvatarAlt] = useState('');
@@ -16,6 +17,21 @@ export function EditProfileForm() {
     const [alertType, setAlertType] = useState('');
     const [updateCount, setUpdateCount] = useState(0);
 
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchAndUpdateProfile = async () => {
+          try {
+            await fetchProfile();
+            updateProfile();
+          } catch (error) {
+            console.error(error);
+          }
+        };
+      
+        fetchAndUpdateProfile();
+      }, []);
+
     useEffect(() => {
         setAvatar(profile.avatar?.url || '');
         setAvatarAlt(profile.avatar?.alt || '');
@@ -23,7 +39,7 @@ export function EditProfileForm() {
         setBannerAlt(profile.banner?.alt || '');
         setBio(profile.bio || '');
         setVenueManager(profile.venueManager || false);
-      }, [updateCount]);
+      }, [profile, updateCount]);
 
     const isValidURL = (string) => {
         try {
@@ -36,6 +52,40 @@ export function EditProfileForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!isValidForm()) return;
+
+        const updatedProfile = {
+            avatar: {
+                url: avatar,
+                alt: avatarAlt,
+            },
+            banner: {
+                url: banner,
+                alt: bannerAlt,
+            },
+            bio: bio,
+            venueManager: venueManager
+        };
+
+       /*  try {
+            await updateProfile(updatedProfile);
+            setAlertMessage('Profile updated successfully');
+            setAlertType('success');
+            setUpdateCount(c => c + 1);
+        } catch (error) {
+            console.error('Profile update failed:', error);
+            setAlertMessage('Failed to update profile');
+            setAlertType('error');
+        } */
+        await updateProfile(updatedProfile);
+        await fetchProfile();
+        setUpdateCount(updateCount + 1);
+
+        setAlertMessage('Profile updated successfully');
+        setAlertType('success');
+    };
+
+    const isValidForm = () => {
         if (bio && bio.length >= 160) {
             setAlertMessage('Bio must be less than 160 characters');
             setAlertType('error');
@@ -61,30 +111,15 @@ export function EditProfileForm() {
             setAlertType('error');
             return;
         }
-
-        const updatedProfile = {
-            avatar: {
-                url: avatar,
-                alt: avatarAlt,
-            },
-            banner: {
-                url: banner,
-                alt: bannerAlt,
-            },
-            bio: bio,
-            venueManager: venueManager
-        };
-
-        await updateProfile(updatedProfile);
-        await fetchProfile();
-        setUpdateCount(updateCount + 1);
-
-        setAlertMessage('Profile updated successfully');
-        setAlertType('success');
+        return true;
     };
 
+    if (!profile) {
+        return <Loader />;
+      }
+      
     if (loading) {
-        return <div>Loading...</div>;
+        return <Loader />;
       }
     
     return (
@@ -92,10 +127,10 @@ export function EditProfileForm() {
             <div className="mb-4 flex flex-col">
                 <div className='flex flex-col-reverse items-center justify-evenly md:flex-row'>
                     <div className="w-32 h-32 rounded-lg overflow-hidden mb-4">
-                        <img src={avatar} alt={avatarAlt} className="object-cover w-full h-full"/>
+                        <img src={profile.avatar} alt={profile.avatarAlt} className="object-cover w-full h-full"/>
                     </div>
                     <div className=" w-56 h-32 rounded-lg overflow-hidden mb-4">
-                        <img src={banner} alt={bannerAlt} className="object-cover w-full h-full"/>
+                        <img src={profile.banner} alt={profile.bannerAlt} className="object-cover w-full h-full"/>
                     </div>
                 </div>
                 <div className="flex flex-col mb-2">
@@ -105,7 +140,7 @@ export function EditProfileForm() {
                         value={avatar}
                         onChange={(e) => setAvatar(e.target.value)}
                         placeholder="Change avatar"
-                        className="mb-2 p-2 border border-gray-300 rounded"
+                        className="mb-2 p-2 border border-grey-300 rounded"
                     />
                 </div>
                 <div className="flex flex-col mb-2">
@@ -115,7 +150,7 @@ export function EditProfileForm() {
                         value={avatarAlt}
                         onChange={(e) => setAvatarAlt(e.target.value)}
                         placeholder="Change Alt"
-                        className="mb-4 p-2 border border-gray-300 rounded"
+                        className="mb-4 p-2 border border-grey-300 rounded"
                     />
                 </div>
             </div>
@@ -127,7 +162,7 @@ export function EditProfileForm() {
                         value={banner}
                         onChange={(e) => setBanner(e.target.value)}
                         placeholder="Change banner"
-                        className="mb-2 p-2 border border-gray-300 rounded w-full"
+                        className="mb-2 p-2 border border-grey-300 rounded w-full"
                     />
                 </label>
                 <label>
@@ -137,7 +172,7 @@ export function EditProfileForm() {
                         value={bannerAlt}
                         onChange={(e) => setBannerAlt(e.target.value)}
                         placeholder="Change Alt"
-                        className="mb-2 p-2 border border-gray-300 rounded w-full"
+                        className="mb-2 p-2 border border-grey-300 rounded w-full"
                     />
                 </label>
             </div>
@@ -148,7 +183,7 @@ export function EditProfileForm() {
                         value={bio}
                         onChange={(e) => setBio(e.target.value)}
                         placeholder="Change bio"
-                        className="p-2 border border-gray-300 rounded w-full"
+                        className="p-2 border border-grey-300 rounded w-full"
                     />
                 </label>
             </div>
@@ -165,16 +200,16 @@ export function EditProfileForm() {
             </div>
             <div className="flex justify-between">
                 <Link to="/profile/myProfile">
-                    <button className="bg-gray-300 text-gray-700 py-2 px-4 rounded">
+                    <button className='bg-yellow-light text-teal-dark hover:bg-yellow font-bold py-2 px-4 rounded'>
                         Back
                     </button>
                 </Link>
-                <button type='submit' className="bg-blue-500 text-white py-2 px-4 rounded">
+                <button type='submit' className='bg-teal text-white hover:bg-teal-dark font-semibold py-2 px-4 rounded'>
                     Save
                 </button>
             </div>
             {alertMessage && (
-                <div className={`mt-4 text-center rounded ${alertType === 'success' ? 'text-green-600' : ' text-red-600'}`}>
+                <div className={`mt-4 text-center rounded ${alertType === 'success' ? 'text-teal' : ' text-teal-dark'}`}>
                     {alertMessage}
                 </div>
             )}
