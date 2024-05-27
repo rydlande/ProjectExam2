@@ -12,14 +12,13 @@ export function Venues() {
 
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <SearchBar venues={venues}/>
+    <div className="bg-white p-8 flex flex-col items-center">
       <h2 className="text-xl font-semibold mb-4">All venues</h2>
-      <div>
-        <VenuesCard venues={venues} />
-      </div>
-      <button onClick={nextPage} disabled={loading}>
-        {loading ? 'Loading...' : `Next Page (Page ${page + 1})`}
+      <SearchBar venues={venues}/>
+      <VenuesCard venues={venues} />
+      <button onClick={nextPage} disabled={loading} className='bg-teal text-white hover:bg-teal-dark font-semibold py-2 px-4 rounded mt-6'
+>
+        {loading ? 'Loading...' : `Load more`}
       </button>
     </div>
   );

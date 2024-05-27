@@ -14,26 +14,26 @@ export function VenuesCard({ venues, allVenues }) {
           const altText = venue.media[0]?.alt || 'Venue image';
 
           return (
-            <div key={venue.id} className="bg-white p-4 rounded-lg shadow-md flex flex-col max-w-xs">
+            <div key={venue.id} className="bg-ehite p-4 rounded-md shadow-md flex flex-col max-w-xs">
               <Link to={`/venues/${venue.id}`}>
-                  <div className="w-full h-32 mb-2 rounded-md overflow-hidden">
-                    <img src={mainImage} alt={altText} className="w-full h-full object-cover" />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-1 truncate">{venue.name}</h3>
-                  </Link>
-                  <p className="text-gray-600 mb-1 truncate">{venue.location.city}, {venue.location.country}</p>
-                  <p className="text-gray-600 mb-1 truncate">{venue.maxGuests} guests</p>
-                  <p className="text-gray-600 mb-1 truncate">{venue.price} NOK / night</p>
-                  <div className="flex items-center">
-                    {venue.rating > 0 ? (
-                      <>
-                        <span className="text-gray-600">{venue.rating}</span>
-                        <span className="text-gray-600">★</span>
-                      </>
-                    ) : (
-                      <span className="text-gray-600 truncate">no ratings</span>
-                    )}
-                  </div>
+                <div className="w-full h-32 mb-2 rounded-sm overflow-hidden">
+                  <img src={mainImage} alt={altText} className="w-full h-full object-cover" />
+                </div>
+                <h3 className="text-lg font-semibold mb-1 truncate">{venue.name}</h3>
+              </Link>
+              <p className="text-grey-600 mb-1 truncate">{venue.location.city}, {venue.location.country}</p>
+              <p className="text-grey-600 mb-1 truncate">{venue.maxGuests} guests</p>
+              <p className="text-grey-600 mb-1 truncate">{venue.price} NOK / night</p>
+              <div className="flex items-center">
+                {venue.rating > 0 ? (
+                  <>
+                    <span className="text-grey-600">{venue.rating}</span>
+                    <span className="text-grey-600">★</span>
+                  </>
+                ) : (
+                  <span className="text-grey-600 truncate">no ratings</span>
+                )}
+              </div>
               {/* Used on "MyVenues" page */}
               {!venue.owner ? (
                 <div className="mt-2 flex justify-between">
