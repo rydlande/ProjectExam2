@@ -10,7 +10,8 @@ import {
     MyProfile, 
     CreateVenue, 
     EditVenue, 
-    MyVenues 
+    MyVenues,
+    MySpecificVenue
 } from "./profile";
 import { HelpCenter } from "./help-center";
 import { User } from "./users";
@@ -29,6 +30,7 @@ export {
     CreateVenue, 
     EditVenue, 
     MyVenues, 
+    MySpecificVenue,
     User, 
     SpecificVenue, 
     Venues,

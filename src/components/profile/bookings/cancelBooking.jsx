@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useProfileStore } from "../../hooks/stores";
+import { useProfileStore } from "../../../hooks/stores";
 
 export function CancelBooking({ booking }) {
     const [showModal, setShowModal] = useState(false);
-    const { profile, fetchProfile } = useProfileStore();
+    const { fetchProfile } = useProfileStore();
 
     useEffect(() => {
         fetchProfile();
