@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 export const useVenuesStore = create((set, get) => ({
-    allVenues: [], // Store all venues here to avoid refetching
+    allVenues: [],
     venues: [],
     loading: false,
     page: 1,
@@ -36,7 +36,7 @@ export const useVenuesStore = create((set, get) => ({
 
     searchVenues: async (query) => {
         if (!query.trim()) {
-            set({ venues: get().allVenues }); // Reset to all venues if search is cleared
+            set({ venues: get().allVenues });
             return;
         }
         set({ loading: true });
