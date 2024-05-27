@@ -2,7 +2,7 @@ export function VenueDetailsCard({ venue }) {
   const formatDate = (dateString) => new Date(dateString).toLocaleDateString();
 
   return (
-      <div className="bg-white p-4 rounded-lg shadow-lg w-full">
+      <div className="bg-white p-4 w-full">
           <div className="mb-4">
               <h2 className="text-2xl font-semibold">{venue.name}</h2>
               <p>Rating {venue.rating}</p>

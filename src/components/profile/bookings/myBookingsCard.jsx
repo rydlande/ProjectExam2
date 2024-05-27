@@ -33,7 +33,7 @@ export function MyBookingsCard({ booking }) {
 
     return (
         <>
-            <div className="bg-gray-100 p-4 rounded-lg shadow-md w-full md:flex md:justify-between mb-6">
+            <div className="bg-grey-100 p-4 rounded-lg shadow-md w-full md:flex md:justify-between mb-6">
                 {/* booking info */}
                 <div className="flex flex-col md:flex-row md:items-center">
                     <div className="w-32 h-32 rounded-md overflow-hidden mb-4 md:mb-0 md:mr-4">
@@ -45,15 +45,15 @@ export function MyBookingsCard({ booking }) {
                         <Link to={`/venues/${venue.id}`}>
                             <h3 className="text-lg font-semibold">{booking.venue.name}</h3>
                         </Link>
-                        <p className="text-gray-600">{formattedDateFrom} - {formattedDateTo}</p>
-                        <p className="text-gray-600">{booking.guests} guests</p>
-                        <p className="text-gray-600">Booked: {formattedDateCreated}</p>
-                        <p className="text-gray-600">Price: {totalPrice} NOK</p>
+                        <p className="text-grey-600">{formattedDateFrom} - {formattedDateTo}</p>
+                        <p className="text-grey-600">{booking.guests} guests</p>
+                        <p className="text-grey-600">Booked: {formattedDateCreated}</p>
+                        <p className="text-grey-600">Price: {totalPrice} NOK</p>
                     </div>
                 </div>
 
                 {/* venue meta */}
-                <div className="hidden md:block text-sm text-gray-600 items-center">
+                <div className="hidden md:block text-sm text-grey-600 items-center">
                     <p>Wifi: {venue.meta.wifi ? 'Yes' : 'No'}</p>
                     <p>Parking: {venue.meta.parking ? 'Yes' : 'No'}</p>
                     <p>Breakfast: {venue.meta.breakfast ? 'Yes' : 'No'}</p>
@@ -67,13 +67,13 @@ export function MyBookingsCard({ booking }) {
                 {/* venue meta for mobile */}
                 <div className="block md:hidden mt-4">
                     <button 
-                        className="text-blue-500 mb-2"
+                        className="text-teal mb-2"
                         onClick={() => setShowVenueMeta(!showVenueMeta)}
                     >
                         {showVenueMeta ? 'Hide Details' : 'Show Details'}
                     </button>
                     {showVenueMeta && (
-                        <div className="text-sm text-gray-600">
+                        <div className="text-sm text-grey-600">
                             <p>Wifi: {venue.meta.wifi ? 'Yes' : 'No'}</p>
                             <p>Parking: {venue.meta.parking ? 'Yes' : 'No'}</p>
                             <p>Breakfast: {venue.meta.breakfast ? 'Yes' : 'No'}</p>
@@ -89,7 +89,6 @@ export function MyBookingsCard({ booking }) {
                 {/* actions */}
                 <div className="flex flex-col items-end justify-between md:ml-4 md:items-end md:justify-end">
                     <div className="flex flex-row justify-between w-full md:flex-col md:align-bottom">
-                        <button className="text-blue-500 mb-2">Make changes</button>
                         <CancelBooking booking={booking} />
                     </div>
                 </div>

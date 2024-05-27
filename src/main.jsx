@@ -8,7 +8,6 @@ import {
   Login, 
   Register, 
   HelpCenter, 
-  EditBooking, 
   MyBookings, 
   EditProfile, 
   MyProfile, 
@@ -16,7 +15,6 @@ import {
   EditVenue, 
   MyVenues, 
   MySpecificVenue,
-  User, 
   SpecificVenue, 
   Venues,
   Error
@@ -61,10 +59,6 @@ const router = createBrowserRouter([
             element: <MyBookings />,
           },
           {
-            path: 'bookings/update',
-            element: <EditBooking />,
-          },
-          {
             path: 'venues',
             element: <MyVenues />,
           },
@@ -98,10 +92,6 @@ const router = createBrowserRouter([
             element: <ForgottenPassword />,
           }
         ],
-      },
-      {
-        path: 'user',
-        element: <User />,
       },
       {
         path: 'help-center',

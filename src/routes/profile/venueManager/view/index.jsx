@@ -3,6 +3,7 @@ import { useProfileStore } from "../../../../hooks/profile/useProfile";
 import { useVenuesStore } from "../../../../hooks/venues/useVenues";
 import { Link } from "react-router-dom";
 import { ViewVenues } from "../../../../components/profile/venueManager/viewVenues";
+import { Loader } from "../../../../components/loader";
 
 export function MyVenues() {
   const { profile, loading, fetchProfile } = useProfileStore();
@@ -14,7 +15,7 @@ export function MyVenues() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (!profile) {

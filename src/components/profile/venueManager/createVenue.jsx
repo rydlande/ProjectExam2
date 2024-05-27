@@ -104,7 +104,7 @@ export function CreateNewVenue() {
     return (
         <form onSubmit={handleSubmit} className="p-4 max-w-lg mx-auto">
             <div className="mb-4">
-                <label className="block text-gray-700">Name</label>
+                <label className="block text-grey-700">Name</label>
                 <input
                     type="text"
                     name="name"
@@ -114,7 +114,7 @@ export function CreateNewVenue() {
                 />
             </div>
             <div className="mb-4">
-                <label className="block text-gray-700">Description</label>
+                <label className="block text-grey-700">Description</label>
                 <textarea
                     name="description"
                     value={venue.description}
@@ -123,7 +123,7 @@ export function CreateNewVenue() {
                 />
             </div>
             <div className="mb-4">
-                <label className="block text-gray-700">Media URL</label>
+                <label className="block text-grey-700">Media URL</label>
                 <input
                     type="text"
                     name="media[0].url"
@@ -136,7 +136,7 @@ export function CreateNewVenue() {
                 />
             </div>
             <div className="mb-4">
-                <label className="block text-gray-700">Media Alt Text</label>
+                <label className="block text-grey-700">Media Alt Text</label>
                 <input
                     type="text"
                     name="media[0].alt"
@@ -149,7 +149,7 @@ export function CreateNewVenue() {
                 />
             </div>
             <div className="mb-4">
-                <label className="block text-gray-700">Price</label>
+                <label className="block text-grey-700">Price</label>
                 <input
                     type="number"
                     name="price"
@@ -159,7 +159,7 @@ export function CreateNewVenue() {
                 />
             </div>
             <div className="mb-4">
-                <label className="block text-gray-700">Max Guests</label>
+                <label className="block text-grey-700">Max Guests</label>
                 <input
                     type="number"
                     name="maxGuests"
@@ -169,7 +169,7 @@ export function CreateNewVenue() {
                 />
             </div>
             <div className="mb-4">
-                <label className="block text-gray-700">Rating</label>
+                <label className="block text-grey-700">Rating</label>
                 <input
                     type="number"
                     name="rating"
@@ -179,7 +179,7 @@ export function CreateNewVenue() {
                 />
             </div>
             <div className="mb-4 flex items-center">
-                <label className="block text-gray-700 mr-2">WiFi</label>
+                <label className="block text-grey-700 mr-2">WiFi</label>
                 <input
                     type="checkbox"
                     name="wifi"
@@ -188,7 +188,7 @@ export function CreateNewVenue() {
                 />
             </div>
             <div className="mb-4 flex items-center">
-                <label className="block text-gray-700 mr-2">Parking</label>
+                <label className="block text-grey-700 mr-2">Parking</label>
                 <input
                     type="checkbox"
                     name="parking"
@@ -197,7 +197,7 @@ export function CreateNewVenue() {
                 />
             </div>
             <div className="mb-4 flex items-center">
-                <label className="block text-gray-700 mr-2">Breakfast</label>
+                <label className="block text-grey-700 mr-2">Breakfast</label>
                 <input
                     type="checkbox"
                     name="breakfast"
@@ -206,7 +206,7 @@ export function CreateNewVenue() {
                 />
             </div>
             <div className="mb-4 flex items-center">
-                <label className="block text-gray-700 mr-2">Pets</label>
+                <label className="block text-grey-700 mr-2">Pets</label>
                 <input
                     type="checkbox"
                     name="pets"
@@ -215,7 +215,7 @@ export function CreateNewVenue() {
                 />
             </div>
             <div className="mb-4">
-                <label className="block text-gray-700">Address</label>
+                <label className="block text-grey-700">Address</label>
                 <input
                     type="text"
                     name="address"
@@ -225,7 +225,7 @@ export function CreateNewVenue() {
                 />
             </div>
             <div className="mb-4">
-                <label className="block text-gray-700">City</label>
+                <label className="block text-grey-700">City</label>
                 <input
                     type="text"
                     name="city"
@@ -235,7 +235,7 @@ export function CreateNewVenue() {
                 />
             </div>
             <div className="mb-4">
-                <label className="block text-gray-700">ZIP</label>
+                <label className="block text-grey-700">ZIP</label>
                 <input
                     type="text"
                     name="zip"
@@ -245,7 +245,7 @@ export function CreateNewVenue() {
                 />
             </div>
             <div className="mb-4">
-                <label className="block text-gray-700">Country</label>
+                <label className="block text-grey-700">Country</label>
                 <input
                     type="text"
                     name="country"
@@ -255,7 +255,7 @@ export function CreateNewVenue() {
                 />
             </div>
             <div className="mb-4">
-                <label className="block text-gray-700">Continent</label>
+                <label className="block text-grey-700">Continent</label>
                 <input
                     type="text"
                     name="continent"
@@ -265,7 +265,7 @@ export function CreateNewVenue() {
                 />
             </div>
             <div className="mb-4">
-                <label className="block text-gray-700">Latitude</label>
+                <label className="block text-grey-700">Latitude</label>
                 <input
                     type="number"
                     name="lat"
@@ -275,7 +275,7 @@ export function CreateNewVenue() {
                 />
             </div>
             <div className="mb-4">
-                <label className="block text-gray-700">Longitude</label>
+                <label className="block text-grey-700">Longitude</label>
                 <input
                     type="number"
                     name="lng"
@@ -284,7 +284,7 @@ export function CreateNewVenue() {
                     className="mt-1 p-2 block w-full border rounded-md"
                 />
             </div>
-            <button type="submit" className="bg-blue-500 text-white p-2 rounded-md">
+            <button type="submit" className='bg-teal text-white hover:bg-teal-dark font-semibold py-2 px-4 rounded'>
                 Create Venue
             </button>
         </form>
