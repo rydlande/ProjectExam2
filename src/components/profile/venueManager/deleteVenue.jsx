@@ -21,10 +21,12 @@ export function DeleteVenue() {
 
   return (
     <>
-    <div>
-      <button onClick={() => setShowModal(true)} className='bg-teal text-white hover:bg-teal-dark font-semibold py-2 px-4 rounded'>
-        Delete Venue
-      </button>
+    <div className="p-4 max-w-lg mx-auto">
+      <div className='mb-4 flex flex-col items-end'> 
+        <button onClick={() => setShowModal(true)} className='bg-teal text-white hover:bg-teal-dark font-semibold py-2 px-4 rounded'>
+          Delete Venue
+        </button>
+      </div>
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded-lg shadow-lg">
