@@ -102,7 +102,7 @@ export function EditVenueForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit} className='text-sm'>
+        <form onSubmit={handleSubmit} className="p-4 max-w-lg mx-auto">
             <div className="mb-4 flex flex-col">
                 <div className="flex flex-col mb-2">
                     <label>Name:</label>
@@ -282,7 +282,7 @@ export function EditVenueForm() {
                         Back
                     </button>
                 </Link>
-                  <button type='submit' className="bg-blue-500 text-white py-2 px-4 rounded">
+                  <button type='submit' className='bg-yellow-light text-teal-dark hover:bg-yellow font-bold py-2 px-4 rounded'>
                       Save
                   </button>
             </div>

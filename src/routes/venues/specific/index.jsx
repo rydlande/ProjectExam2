@@ -22,7 +22,7 @@ export function SpecificVenue() {
     <div className="min-h-screen flex flex-col items-center justify-center">
       <div className="bg-white p-8  w-full max-w-3xl mx-auto">
         <div className="flex justify-between items-center mb-6">
-          <Link to="/profile/myProfile">
+          <Link to="/">
             <button className="bg-yellow-light text-teal-dark hover:bg-yellow font-bold py-2 px-4 rounded">
               Back
             </button>

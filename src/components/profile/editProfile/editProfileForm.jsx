@@ -20,17 +20,8 @@ export function EditProfileForm() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchAndUpdateProfile = async () => {
-          try {
-            await fetchProfile();
-            updateProfile();
-          } catch (error) {
-            console.error(error);
-          }
-        };
-      
-        fetchAndUpdateProfile();
-      }, []);
+        fetchProfile().catch(console.error);
+    }, [fetchProfile]);
 
     useEffect(() => {
         setAvatar(profile.avatar?.url || '');
@@ -66,17 +57,6 @@ export function EditProfileForm() {
             bio: bio,
             venueManager: venueManager
         };
-
-       /*  try {
-            await updateProfile(updatedProfile);
-            setAlertMessage('Profile updated successfully');
-            setAlertType('success');
-            setUpdateCount(c => c + 1);
-        } catch (error) {
-            console.error('Profile update failed:', error);
-            setAlertMessage('Failed to update profile');
-            setAlertType('error');
-        } */
         await updateProfile(updatedProfile);
         await fetchProfile();
         setUpdateCount(updateCount + 1);

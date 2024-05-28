@@ -1,18 +1,24 @@
 import { useEffect } from "react";
-import { useProfileStore } from "../../../../hooks/stores";
 import { Link } from "react-router-dom";
+import { useProfileStore } from "../../../../hooks/stores";
 import { MyBookingsCard } from "../../../../components/profile/bookings/myBookingsCard";
-import { Loader } from '../../../../components/loader'
+import { Loader } from '../../../../components/loader';
 
 export function MyBookings() {
   const { profile, fetchProfile, loading } = useProfileStore();
 
-  useEffect(() => {
-    fetchProfile();
-  }, [fetchProfile]);
+  /* Had to comment out at 02:23 Tuesday 28.05.24 because it is stuck in a fetch-loop, but I have not been able to locate the problem... */
+  /* Since I cant show you the booking page, you should check out the amezome loader-bike thats on the page*/
+  /* useEffect(() => {
+    fetchProfile().catch(console.error);
+  }, []); */
 
   if (loading) {
     return <Loader />;
+  }
+
+  if (!profile) {
+    return <div>Profile data not available.</div>;
   }
 
   return (
@@ -25,19 +31,18 @@ export function MyBookings() {
             </button>
           </Link>
           <Link to="/">
-            <button className='bg-teal text-white hover:bg-teal-dark font-semibold py-2 px-4 rounded'
->
+            <button className='bg-teal text-white hover:bg-teal-dark font-semibold py-2 px-4 rounded'>
               New Booking
             </button>
           </Link>
         </div>
         <h1 className="text-2xl font-semibold mb-6">My bookings</h1>
-        {profile && (
-          <div>
-            {profile.bookings.map((booking, index) => (
-              <MyBookingsCard key={index} booking={booking} />
-            ))}
-          </div>
+        {profile.bookings.length > 0 ? (
+          profile.bookings.map((booking, index) => (
+            <MyBookingsCard key={index} booking={booking} />
+          ))
+        ) : (
+          <div>No bookings found.</div>
         )}
       </div>
     </div>

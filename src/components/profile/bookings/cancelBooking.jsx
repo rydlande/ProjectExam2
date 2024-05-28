@@ -5,9 +5,10 @@ export function CancelBooking({ booking }) {
     const [showModal, setShowModal] = useState(false);
     const { fetchProfile } = useProfileStore();
 
-    useEffect(() => {
+      /* Had to comment out at 02:23 Tuesday 28.05.24 because it is stuck in a fetch-loop, but I have not been able to locate the problem... */
+  /*   useEffect(() => {
         fetchProfile();
-    }, [fetchProfile]);
+    }, []); */
 
     const handleDelete = async () => {
         const response = await fetch(`https://v2.api.noroff.dev/holidaze/bookings/${booking.id}`, {

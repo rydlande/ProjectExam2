@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export const useProfileStore = create((set) => ({
+export const useProfileStore = create((set, get) => ({
     profile: null,
     loading: false,
     error: null,

@@ -4,31 +4,35 @@ import { useVenuesStore } from "../../../hooks/venues/useVenues";
 
 export function SearchBar() {
   const [searchInput, setSearchInput] = useState('');
+  const [isSearching, setIsSearching] = useState(false);
   const { venues, searchVenues, fetchVenues } = useVenuesStore();
   const searchRef = useRef(null);
 
   useEffect(() => {
-    function handleClickOutside(e) {
+    const handleClickOutside = (e) => {
       if (searchRef.current && !searchRef.current.contains(e.target)) {
         setSearchInput('');
+        setIsSearching(false);
       }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
     };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      if (searchInput.trim()) { 
+      if (searchInput.trim()) {
         searchVenues(searchInput);
+        setIsSearching(true);
       } else {
-        fetchVenues();
+        if (isSearching) {
+          fetchVenues();
+          setIsSearching(false);
+        }
       }
     }, 300);
     return () => clearTimeout(handler);
-  }, [searchInput, searchVenues]);
+  }, [searchInput, searchVenues, fetchVenues, isSearching]);
 
   const isDropdownOpen = searchInput && venues.length > 0;
 
@@ -50,6 +54,7 @@ export function SearchBar() {
               className="flex items-center px-4 py-2 hover:bg-grey-100 cursor-pointer"
               onClick={() => {
                 setSearchInput('');
+                setIsSearching(false);
               }}
             >
               <img
