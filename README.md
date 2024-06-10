@@ -1,5 +1,8 @@
 # Exam 2 - Holidaze Accommodation Booking Site
 
+![Screenshot 2024-06-10 at 21 38 49](https://github.com/rydlande/ProjectExam2/assets/112164731/5773738c-1355-465e-bc29-3bfcb416a340)
+
+
 ## Project Overview
 
 This project, "Exam 2," is developed as part of an extensive front-end development assignment. The goal is to create a modern front-end application for an accommodation booking site called Holidaze. The site features a customer-facing side for booking holidays and an admin-facing side for managing venues and bookings.
