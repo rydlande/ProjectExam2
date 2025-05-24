@@ -1,4 +1,4 @@
-import './loader.css'; // Ensure the CSS path is correct
+import './loader.css';
 
 export function Loader() {
   return (
